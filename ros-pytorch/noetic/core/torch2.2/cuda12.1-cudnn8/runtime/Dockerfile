@@ -14,10 +14,11 @@ RUN mkdir /entrypoint.d
 RUN { \
     echo "#!/bin/bash"; \
     echo "for f in /entrypoint.d/*.sh; do [ ! -d \$f ] && source \$f; done"; \
-    echo "if [[ $# -eq 0 ]]; then exec \"/bin/bash\"; else exec \"\$@\"; fi"; \
+    echo "exec \"\$@\""; \
     } > /entrypoint.sh && chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/bin/bash"]
 
 
 # Install basic packages
