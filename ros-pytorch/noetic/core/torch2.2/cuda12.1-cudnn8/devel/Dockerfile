@@ -13,7 +13,9 @@ ENV ROS_DISTRO noetic
 RUN mkdir /entrypoint.d
 RUN { \
     echo "#!/bin/bash"; \
-    echo "for f in /entrypoint.d/*.sh; do [ ! -d \$f ] && source \$f; done"; \
+    echo "for f in /entrypoint.d/*.sh; do"; \
+    echo "    [ ! -d \$f ] && source \$f"; \
+    echo "done"; \
     echo "exec \"\$@\""; \
     } > /entrypoint.sh && chmod +x /entrypoint.sh
 
